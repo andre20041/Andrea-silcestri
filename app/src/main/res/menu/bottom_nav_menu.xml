@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/nav_today" android:title="Oggi" android:icon="@drawable/ic_today" />
+    <item android:id="@+id/nav_habits" android:title="Abitudini" android:icon="@drawable/ic_habits" />
+    <item android:id="@+id/nav_activities" android:title="Attività" android:icon="@drawable/ic_activities" />
+    <item android:id="@+id/nav_categories" android:title="Categorie" android:icon="@drawable/ic_categories" />
+    <item android:id="@+id/nav_timer" android:title="Timer" android:icon="@drawable/ic_timer" />
+</menu>
