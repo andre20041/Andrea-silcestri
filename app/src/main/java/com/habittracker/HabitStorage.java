@@ -61,6 +61,7 @@ public class HabitStorage {
                 );
                 h.setCompletedToday(obj.getBoolean("completedToday"));
                 h.setStreak(obj.getInt("streak"));
+                h.setCategory(obj.optString("category", ""));
                 habits.add(h);
             }
         } catch (JSONException e) {
@@ -79,6 +80,7 @@ public class HabitStorage {
                 obj.put("emoji", h.getEmoji());
                 obj.put("completedToday", h.isCompletedToday());
                 obj.put("streak", h.getStreak());
+                obj.put("category", h.getCategory());
                 arr.put(obj);
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -88,8 +90,14 @@ public class HabitStorage {
     }
 
     public void addHabit(String name, String emoji) {
+        addHabit(name, emoji, "");
+    }
+
+    public void addHabit(String name, String emoji, String category) {
         List<Habit> habits = loadHabits();
-        habits.add(new Habit(UUID.randomUUID().toString(), name, emoji));
+        Habit h = new Habit(UUID.randomUUID().toString(), name, emoji);
+        h.setCategory(category);
+        habits.add(h);
         saveHabits(habits);
     }
 

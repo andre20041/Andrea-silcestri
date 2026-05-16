@@ -18,6 +18,8 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".CategorySelectionActivity" android:exported="false"/>
+
         <receiver
             android:name=".HabitWidget"
             android:exported="true">

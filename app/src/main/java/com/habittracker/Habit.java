@@ -8,6 +8,7 @@ public class Habit implements Serializable {
     private String emoji;
     private boolean completedToday;
     private int streak;
+    private String category;
 
     public Habit(String id, String name, String emoji) {
         this.id = id;
@@ -15,6 +16,7 @@ public class Habit implements Serializable {
         this.emoji = emoji;
         this.completedToday = false;
         this.streak = 0;
+        this.category = "";
     }
 
     public String getId() { return id; }
@@ -22,8 +24,10 @@ public class Habit implements Serializable {
     public String getEmoji() { return emoji; }
     public boolean isCompletedToday() { return completedToday; }
     public int getStreak() { return streak; }
+    public String getCategory() { return category; }
 
     public void setCompletedToday(boolean completedToday) { this.completedToday = completedToday; }
     public void setStreak(int streak) { this.streak = streak; }
     public void setName(String name) { this.name = name; }
+    public void setCategory(String category) { this.category = category; }
 }
