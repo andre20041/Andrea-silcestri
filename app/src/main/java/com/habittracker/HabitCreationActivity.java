@@ -57,19 +57,14 @@ public class HabitCreationActivity extends AppCompatActivity {
         View btnNumeric = findViewById(R.id.btn_numeric);
         View btnTimer = findViewById(R.id.btn_timer);
 
-        btnYesNo.setOnClickListener(v -> { selectedTracking = "yes_no"; highlightTracking(btnYesNo, btnNumeric, btnTimer); });
-        btnNumeric.setOnClickListener(v -> { selectedTracking = "numeric"; highlightTracking(btnNumeric, btnYesNo, btnTimer); });
-        btnTimer.setOnClickListener(v -> { selectedTracking = "timer"; highlightTracking(btnTimer, btnYesNo, btnNumeric); });
+        btnYesNo.setOnClickListener(v -> { selectedTracking = "yes_no"; navigateNext(); });
+        btnNumeric.setOnClickListener(v -> { selectedTracking = "numeric"; navigateNext(); });
+        btnTimer.setOnClickListener(v -> { selectedTracking = "timer"; navigateNext(); });
 
         btnPrev.setOnClickListener(v -> navigatePrev());
         btnNext.setOnClickListener(v -> navigateNext());
 
         updateUI();
-    }
-
-    private void highlightTracking(View selected, View... others) {
-        selected.setBackgroundResource(R.drawable.btn_red_filled);
-        for (View v : others) v.setBackgroundResource(R.drawable.btn_red_filled);
     }
 
     private void navigateNext() {

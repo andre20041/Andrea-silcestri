@@ -37,6 +37,14 @@ public class TodayFragment extends Fragment {
         emptyState = root.findViewById(R.id.empty_state);
         rvHabits = root.findViewById(R.id.rv_habits_today);
 
+        // Set toolbar date
+        android.widget.TextView tvDate = root.findViewById(R.id.tv_toolbar_date);
+        java.util.Calendar cal = java.util.Calendar.getInstance();
+        String[] months = {"Gen","Feb","Mar","Apr","Mag","Giu","Lug","Ago","Set","Ott","Nov","Dic"};
+        tvDate.setText(cal.get(java.util.Calendar.DAY_OF_MONTH) + " " +
+                months[cal.get(java.util.Calendar.MONTH)] + " " +
+                cal.get(java.util.Calendar.YEAR));
+
         setupCalendar(root);
         setupHabits();
 

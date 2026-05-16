@@ -19,13 +19,24 @@
             android:paddingEnd="8dp"
             android:orientation="horizontal">
 
+            <ImageView
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:padding="6dp"
+                android:src="@drawable/ic_filter"
+                android:tint="#888888"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="Menu"
+                android:layout_marginEnd="4dp"/>
+
             <TextView
+                android:id="@+id/tv_toolbar_date"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Oggi"
                 android:textColor="@color/text_primary"
-                android:textSize="22sp"
+                android:textSize="20sp"
                 android:textStyle="bold" />
 
             <ImageView

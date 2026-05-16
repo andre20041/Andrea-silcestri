@@ -1,94 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="10dp"
-    app:cardBackgroundColor="@color/bg_card"
-    app:cardCornerRadius="14dp"
-    app:cardElevation="0dp">
+    android:orientation="vertical"
+    android:background="?attr/selectableItemBackground">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:padding="16dp">
+        android:gravity="center_vertical"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:paddingTop="14dp"
+        android:paddingBottom="14dp">
 
-        <!-- Left: completion circle -->
+        <!-- Left: colored rounded square category icon -->
         <FrameLayout
-            android:layout_width="44dp"
-            android:layout_height="44dp">
+            android:id="@+id/category_icon_container"
+            android:layout_width="50dp"
+            android:layout_height="50dp">
 
             <TextView
-                android:id="@+id/btn_check"
-                android:layout_width="44dp"
-                android:layout_height="44dp"
+                android:id="@+id/tv_emoji"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:gravity="center"
-                android:text="○"
-                android:textColor="@color/accent"
-                android:textSize="28sp"
-                android:background="?attr/selectableItemBackgroundBorderless" />
+                android:text="💪"
+                android:textSize="24sp"/>
         </FrameLayout>
 
-        <!-- Middle: emoji + name + streak -->
+        <!-- Center: name + category badge -->
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
             android:layout_weight="1"
+            android:layout_marginStart="14dp"
             android:orientation="vertical">
 
-            <LinearLayout
+            <TextView
+                android:id="@+id/tv_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_vertical">
+                android:text="Nome abitudine"
+                android:textColor="#FFFFFF"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:maxLines="1"
+                android:ellipsize="end"/>
 
-                <TextView
-                    android:id="@+id/tv_emoji"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="💪"
-                    android:textSize="18sp" />
-
-                <TextView
-                    android:id="@+id/tv_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:text="Nome abitudine"
-                    android:textColor="@color/text_primary"
-                    android:textSize="15sp"
-                    android:textStyle="bold" />
-            </LinearLayout>
-
-            <LinearLayout
+            <TextView
+                android:id="@+id/tv_category_badge"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:orientation="horizontal"
-                android:gravity="center_vertical">
-
-                <TextView
-                    android:id="@+id/tv_streak"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="🔥 0 giorni"
-                    android:textColor="@color/text_secondary"
-                    android:textSize="12sp" />
-            </LinearLayout>
+                android:layout_marginTop="5dp"
+                android:text="Abitudine"
+                android:textSize="11sp"
+                android:textStyle="bold"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
+                android:paddingTop="2dp"
+                android:paddingBottom="2dp"/>
         </LinearLayout>
 
-        <!-- Right: delete -->
-        <ImageButton
-            android:id="@+id/btn_delete"
-            android:layout_width="36dp"
-            android:layout_height="36dp"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:contentDescription="Elimina"
-            android:src="@android:drawable/ic_menu_close_clear_cancel"
-            android:tint="#555555"
-            android:padding="6dp" />
+        <!-- Right: clock icon -->
+        <ImageView
+            android:id="@+id/iv_status"
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:src="@drawable/ic_schedule"
+            android:contentDescription="Stato"/>
+
     </LinearLayout>
-</androidx.cardview.widget.CardView>
+
+    <!-- Divider -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginStart="80dp"
+        android:background="#1F1F1F"/>
+
+</LinearLayout>
