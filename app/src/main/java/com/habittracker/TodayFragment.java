@@ -130,11 +130,17 @@ public class TodayFragment extends Fragment {
             }
             @Override
             public void onRecurringSelected() {
-                showNameDialog("", "Attività ricorrente");
+                Intent i = new Intent(requireContext(), HabitCreationActivity.class);
+                i.putExtra(HabitCreationActivity.EXTRA_CATEGORY_NAME, "Attività ricorrente");
+                i.putExtra(HabitCreationActivity.EXTRA_CATEGORY_EMOJI, "🔄");
+                startActivityForResult(i, AddTypeBottomSheet.REQUEST_ADD_HABIT);
             }
             @Override
             public void onActivitySelected() {
-                showNameDialog("", "Attività");
+                Intent i = new Intent(requireContext(), HabitCreationActivity.class);
+                i.putExtra(HabitCreationActivity.EXTRA_CATEGORY_NAME, "Attività");
+                i.putExtra(HabitCreationActivity.EXTRA_CATEGORY_EMOJI, "✅");
+                startActivityForResult(i, AddTypeBottomSheet.REQUEST_ADD_HABIT);
             }
         });
         sheet.show(getChildFragmentManager(), "add_type");
@@ -144,36 +150,15 @@ public class TodayFragment extends Fragment {
     public void onActivityResult(int requestCode, int resultCode, android.content.Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == AddTypeBottomSheet.REQUEST_ADD_HABIT && resultCode == android.app.Activity.RESULT_OK && data != null) {
-            String catName = data.getStringExtra(CategorySelectionActivity.EXTRA_CATEGORY_NAME);
-            String catEmoji = data.getStringExtra(CategorySelectionActivity.EXTRA_CATEGORY_EMOJI);
-            showNameDialog(catEmoji != null ? catEmoji : "💪", catName != null ? catName : "");
+            String name = data.getStringExtra(HabitCreationActivity.RESULT_HABIT_NAME);
+            String emoji = data.getStringExtra(HabitCreationActivity.RESULT_HABIT_EMOJI);
+            String category = data.getStringExtra(HabitCreationActivity.RESULT_CATEGORY);
+            if (name != null && !name.isEmpty()) {
+                storage.addHabit(name, emoji != null ? emoji : "💪", category != null ? category : "");
+                refreshData();
+                updateWidget();
+            }
         }
-    }
-
-    private void showNameDialog(String defaultEmoji, String categoryName) {
-        android.view.View dialogView = android.view.LayoutInflater.from(requireContext()).inflate(R.layout.dialog_add_habit, null);
-        android.widget.EditText etName = dialogView.findViewById(R.id.et_habit_name);
-        final String[] selectedEmoji = {defaultEmoji.isEmpty() ? EMOJIS[0] : defaultEmoji};
-        android.widget.TextView tvEmoji = dialogView.findViewById(R.id.tv_selected_emoji);
-        tvEmoji.setText(selectedEmoji[0]);
-        tvEmoji.setOnClickListener(v -> {
-            new AlertDialog.Builder(requireContext())
-                    .setTitle("Scegli emoji")
-                    .setItems(EMOJIS, (d, which) -> { selectedEmoji[0] = EMOJIS[which]; tvEmoji.setText(selectedEmoji[0]); }).show();
-        });
-        new AlertDialog.Builder(requireContext())
-                .setTitle(!categoryName.isEmpty() ? categoryName : "Nuova abitudine")
-                .setView(dialogView)
-                .setPositiveButton("Aggiungi", (d, w) -> {
-                    String name = etName.getText().toString().trim();
-                    if (!name.isEmpty()) {
-                        storage.addHabit(name, selectedEmoji[0], categoryName);
-                        refreshData();
-                        updateWidget();
-                    }
-                })
-                .setNegativeButton("Annulla", null)
-                .show();
     }
 
     private void updateWidget() {

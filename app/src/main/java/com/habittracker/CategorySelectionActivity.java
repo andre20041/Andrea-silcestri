@@ -22,11 +22,10 @@ public class CategorySelectionActivity extends AppCompatActivity {
 
         List<Category> categories = Category.getDefaultCategories();
         CategoryAdapter adapter = new CategoryAdapter(categories, cat -> {
-            Intent result = new Intent();
-            result.putExtra(EXTRA_CATEGORY_NAME, cat.getName());
-            result.putExtra(EXTRA_CATEGORY_EMOJI, cat.getEmoji());
-            setResult(RESULT_OK, result);
-            finish();
+            Intent intent = new Intent(this, HabitCreationActivity.class);
+            intent.putExtra(HabitCreationActivity.EXTRA_CATEGORY_NAME, cat.getName());
+            intent.putExtra(HabitCreationActivity.EXTRA_CATEGORY_EMOJI, cat.getEmoji());
+            startActivityForResult(intent, 2002);
         });
         rv.setAdapter(adapter);
 
@@ -34,5 +33,14 @@ public class CategorySelectionActivity extends AppCompatActivity {
             setResult(RESULT_CANCELED);
             finish();
         });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 2002) {
+            setResult(resultCode, data);
+            finish();
+        }
     }
 }

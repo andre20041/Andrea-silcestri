@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#0F0F0F">
+
+    <ViewFlipper
+        android:id="@+id/view_flipper"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <!-- Step 1: Tracking type -->
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="24dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="32dp"
+                    android:gravity="center"
+                    android:text="Come vuoi valutare\ni tuoi progressi?"
+                    android:textColor="#EF5350"
+                    android:textSize="22sp"
+                    android:textStyle="bold"/>
+
+                <!-- Si o No -->
+                <LinearLayout android:id="@+id/btn_yes_no"
+                    android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp" android:orientation="vertical"
+                    android:background="@drawable/btn_red_filled"
+                    android:padding="18dp">
+                    <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:gravity="center" android:text="CON UN SI O NO"
+                        android:textColor="#FFFFFF" android:textSize="15sp" android:textStyle="bold"/>
+                </LinearLayout>
+                <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp" android:gravity="center"
+                    android:text="Se vuoi solo registrare se hai successo\ncon l'attività o meno"
+                    android:textColor="#777777" android:textSize="13sp"/>
+
+                <!-- Valore numerico -->
+                <LinearLayout android:id="@+id/btn_numeric"
+                    android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp" android:orientation="vertical"
+                    android:background="@drawable/btn_red_filled"
+                    android:padding="18dp">
+                    <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:gravity="center" android:text="CON UN VALORE NUMERICO"
+                        android:textColor="#FFFFFF" android:textSize="15sp" android:textStyle="bold"/>
+                </LinearLayout>
+                <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp" android:gravity="center"
+                    android:text="Se vuoi impostare un valore come obiettivo\ngiornaliero o limite di abitudine"
+                    android:textColor="#777777" android:textSize="13sp"/>
+
+                <!-- Cronometro -->
+                <LinearLayout android:id="@+id/btn_timer"
+                    android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp" android:orientation="vertical"
+                    android:background="@drawable/btn_red_filled"
+                    android:padding="18dp">
+                    <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:gravity="center" android:text="CON UN CRONOMETRO"
+                        android:textColor="#FFFFFF" android:textSize="15sp" android:textStyle="bold"/>
+                </LinearLayout>
+                <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp" android:gravity="center"
+                    android:text="Se vuoi stabilire un valore temporale come\nobiettivo giornaliero o limite per l'abitudine"
+                    android:textColor="#777777" android:textSize="13sp"/>
+
+                <!-- Elenco attività (premium) -->
+                <LinearLayout android:id="@+id/btn_checklist"
+                    android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp" android:orientation="vertical"
+                    android:background="@drawable/btn_red_disabled"
+                    android:padding="18dp">
+                    <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:gravity="center" android:text="CON UN ELENCO DI ATTIVITÀ"
+                        android:textColor="#555555" android:textSize="15sp" android:textStyle="bold"/>
+                </LinearLayout>
+                <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp" android:gravity="center"
+                    android:text="Se vuoi valutare la tua attività sulla base\ndi una serie di attività secondarie"
+                    android:textColor="#555555" android:textSize="13sp"/>
+                <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp" android:gravity="center"
+                    android:text="Funzionalità premium"
+                    android:textColor="#EF5350" android:textSize="13sp"/>
+            </LinearLayout>
+        </ScrollView>
+
+        <!-- Step 2: Define habit -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="24dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="32dp"
+                android:gravity="center"
+                android:text="Definisci la tua abitudine"
+                android:textColor="#EF5350"
+                android:textSize="22sp"
+                android:textStyle="bold"/>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                style="@style/RedOutlinedBox"
+                android:hint="Abitudine">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_habit_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textCapSentences"
+                    android:maxLines="1"
+                    android:textColor="#FFFFFF"
+                    android:textColorHint="#777777"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:gravity="center"
+                android:text="per es. Risparmia denaro per le vacanze."
+                android:textColor="#555555"
+                android:textSize="13sp"/>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/RedOutlinedBox"
+                android:hint="Descrizione (opzionale)">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textCapSentences|textMultiLine"
+                    android:maxLines="3"
+                    android:textColor="#FFFFFF"
+                    android:textColorHint="#777777"/>
+            </com.google.android.material.textfield.TextInputLayout>
+        </LinearLayout>
+
+    </ViewFlipper>
+
+    <!-- Bottom navigation bar -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingStart="24dp"
+        android:paddingEnd="24dp">
+
+        <TextView
+            android:id="@+id/btn_prev"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="PRECEDENTE"
+            android:textColor="#FFFFFF"
+            android:textSize="13sp"
+            android:textStyle="bold"
+            android:padding="8dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:visibility="invisible"/>
+
+        <!-- dots -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <View android:id="@+id/dot_1"
+                android:layout_width="10dp" android:layout_height="10dp"
+                android:layout_margin="4dp"
+                android:background="@drawable/dot_filled"/>
+            <View android:id="@+id/dot_2"
+                android:layout_width="10dp" android:layout_height="10dp"
+                android:layout_margin="4dp"
+                android:background="@drawable/dot_empty"/>
+            <View android:id="@+id/dot_3"
+                android:layout_width="10dp" android:layout_height="10dp"
+                android:layout_margin="4dp"
+                android:background="@drawable/dot_empty"/>
+            <View android:id="@+id/dot_4"
+                android:layout_width="10dp" android:layout_height="10dp"
+                android:layout_margin="4dp"
+                android:background="@drawable/dot_empty"/>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/btn_next"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="PROSSIMO"
+            android:textColor="#EF5350"
+            android:textSize="13sp"
+            android:textStyle="bold"
+            android:padding="8dp"
+            android:background="?attr/selectableItemBackgroundBorderless"/>
+    </LinearLayout>
+
+</LinearLayout>

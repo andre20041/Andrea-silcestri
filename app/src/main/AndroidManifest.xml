@@ -19,6 +19,7 @@
         </activity>
 
         <activity android:name=".CategorySelectionActivity" android:exported="false"/>
+        <activity android:name=".HabitCreationActivity" android:exported="false" android:windowSoftInputMode="adjustResize"/>
 
         <receiver
             android:name=".HabitWidget"
