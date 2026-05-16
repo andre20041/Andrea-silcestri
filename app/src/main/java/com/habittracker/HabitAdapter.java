@@ -1,6 +1,9 @@
 package com.habittracker;
 
+import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
+import android.graphics.drawable.LayerDrawable;
+import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,24 +49,35 @@ public class HabitAdapter extends RecyclerView.Adapter<HabitAdapter.ViewHolder> 
 
         // Category color (from category name stored in habit)
         int catColor = getCategoryColor(habit.getCategory());
+        int displayColor = habit.isCompletedToday() ? 0xFF4CAF50 : catColor;
 
-        // Left icon background: colored rounded square
-        GradientDrawable iconBg = new GradientDrawable();
+        // Convert 14dp to pixels for a proper iOS-style squircle radius
+        float density = h.itemView.getContext().getResources().getDisplayMetrics().density;
+        float cornerPx = 14f * density;
+
+        // Gradient icon background: top-left lighter, bottom-right slightly darker
+        int lightColor = blendColor(displayColor, Color.WHITE, 0.18f);
+        int darkColor = blendColor(displayColor, Color.BLACK, 0.15f);
+        GradientDrawable iconBg = new GradientDrawable(
+                GradientDrawable.Orientation.TL_BR,
+                new int[]{lightColor, displayColor, darkColor});
         iconBg.setShape(GradientDrawable.RECTANGLE);
-        iconBg.setCornerRadius(16f);
-        iconBg.setColor(habit.isCompletedToday() ? 0xFF4CAF50 : catColor);
+        iconBg.setCornerRadius(cornerPx);
         h.iconContainer.setBackground(iconBg);
 
         // Badge background + text color
+        float badgeCornerPx = 20f * density;
+        int badgeColor = blendColor(displayColor, 0xFF000000, 0.0f);
         GradientDrawable badgeBg = new GradientDrawable();
         badgeBg.setShape(GradientDrawable.RECTANGLE);
-        badgeBg.setCornerRadius(20f);
-        badgeBg.setColor((catColor & 0x00FFFFFF) | 0x33000000);
+        badgeBg.setCornerRadius(badgeCornerPx);
+        badgeBg.setColor((displayColor & 0x00FFFFFF) | 0x26000000);
+        badgeBg.setStroke((int)(1f * density), (displayColor & 0x00FFFFFF) | 0x55000000);
         h.tvCategoryBadge.setBackground(badgeBg);
-        h.tvCategoryBadge.setTextColor(catColor);
+        h.tvCategoryBadge.setTextColor(displayColor);
 
         // Completion state: dim entire row
-        h.itemView.setAlpha(habit.isCompletedToday() ? 0.55f : 1.0f);
+        h.itemView.setAlpha(habit.isCompletedToday() ? 0.5f : 1.0f);
 
         // Tap = toggle
         h.itemView.setOnClickListener(v -> listener.onToggle(habit));
@@ -73,6 +87,13 @@ public class HabitAdapter extends RecyclerView.Adapter<HabitAdapter.ViewHolder> 
             listener.onDelete(habit);
             return true;
         });
+    }
+
+    private int blendColor(int color, int overlay, float amount) {
+        int r = (int) (Color.red(color) * (1 - amount) + Color.red(overlay) * amount);
+        int g = (int) (Color.green(color) * (1 - amount) + Color.green(overlay) * amount);
+        int b = (int) (Color.blue(color) * (1 - amount) + Color.blue(overlay) * amount);
+        return Color.rgb(Math.min(255, r), Math.min(255, g), Math.min(255, b));
     }
 
     private int getCategoryColor(String categoryName) {

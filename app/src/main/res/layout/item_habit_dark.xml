@@ -18,8 +18,9 @@
         <!-- Left: colored rounded square category icon -->
         <FrameLayout
             android:id="@+id/category_icon_container"
-            android:layout_width="50dp"
-            android:layout_height="50dp">
+            android:layout_width="52dp"
+            android:layout_height="52dp"
+            android:elevation="2dp">
 
             <TextView
                 android:id="@+id/tv_emoji"
@@ -27,7 +28,7 @@
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:text="💪"
-                android:textSize="24sp"/>
+                android:textSize="26sp"/>
         </FrameLayout>
 
         <!-- Center: name + category badge -->
@@ -77,7 +78,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_marginStart="80dp"
+        android:layout_marginStart="82dp"
         android:background="#1F1F1F"/>
 
 </LinearLayout>
