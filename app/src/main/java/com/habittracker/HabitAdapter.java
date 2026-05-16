@@ -48,11 +48,13 @@ public class HabitAdapter extends RecyclerView.Adapter<HabitAdapter.ViewHolder> 
         int catColor = getCategoryColor(habit.getCategory());
         int displayColor = habit.isCompletedToday() ? 0xFF4CAF50 : catColor;
 
-        // MaterialCardView: set background color directly
         h.iconCard.setCardBackgroundColor(displayColor);
-
-        // Map category to white vector icon
         h.ivIcon.setImageResource(getCategoryIcon(habit.getCategory()));
+
+        // Circular toggle
+        h.ivToggle.setImageResource(habit.isCompletedToday()
+                ? R.drawable.ic_toggle_done
+                : R.drawable.ic_toggle_empty);
 
         // Badge pill: semi-transparent tint of the category color
         float density = h.itemView.getContext().getResources().getDisplayMetrics().density;
@@ -109,7 +111,7 @@ public class HabitAdapter extends RecyclerView.Adapter<HabitAdapter.ViewHolder> 
     static class ViewHolder extends RecyclerView.ViewHolder {
         TextView tvName, tvCategoryBadge;
         MaterialCardView iconCard;
-        ImageView ivIcon;
+        ImageView ivIcon, ivToggle;
 
         ViewHolder(View v) {
             super(v);
@@ -117,6 +119,7 @@ public class HabitAdapter extends RecyclerView.Adapter<HabitAdapter.ViewHolder> 
             tvCategoryBadge = v.findViewById(R.id.tv_category_badge);
             iconCard = v.findViewById(R.id.category_icon_container);
             ivIcon = v.findViewById(R.id.iv_cat_icon);
+            ivToggle = v.findViewById(R.id.iv_toggle);
         }
     }
 }

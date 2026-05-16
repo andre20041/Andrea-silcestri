@@ -24,7 +24,7 @@
                 android:layout_height="36dp"
                 android:padding="6dp"
                 android:src="@drawable/ic_hamburger"
-                android:tint="#CCCCCC"
+                android:tint="@color/accent"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:contentDescription="Menu"
                 android:layout_marginEnd="4dp"/>
@@ -36,7 +36,7 @@
                 android:layout_weight="1"
                 android:text="Oggi"
                 android:textColor="@color/text_primary"
-                android:textSize="20sp"
+                android:textSize="22sp"
                 android:textStyle="bold" />
 
             <ImageView
@@ -74,7 +74,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_calendar"
             android:layout_width="match_parent"
-            android:layout_height="80dp"
+            android:layout_height="88dp"
             android:paddingStart="8dp"
             android:paddingEnd="8dp"
             android:clipToPadding="false" />
@@ -82,8 +82,8 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/divider"
-            android:layout_marginTop="4dp" />
+            android:background="#111111"
+            android:layout_marginTop="2dp" />
 
         <!-- Habits list -->
         <androidx.recyclerview.widget.RecyclerView
@@ -91,9 +91,9 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:padding="12dp"
-            android:clipToPadding="false"
-            android:paddingBottom="80dp" />
+            android:paddingTop="8dp"
+            android:paddingBottom="80dp"
+            android:clipToPadding="false" />
 
         <!-- Empty state -->
         <LinearLayout
@@ -109,7 +109,7 @@
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:src="@drawable/ic_today"
-                android:tint="#333333"
+                android:tint="#222222"
                 android:contentDescription="Nessuna abitudine" />
 
             <TextView
@@ -131,16 +131,18 @@
         </LinearLayout>
     </LinearLayout>
 
+    <!-- FAB squircle -->
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_add_today"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
-        android:layout_margin="16dp"
-        android:layout_marginBottom="8dp"
+        android:layout_margin="20dp"
         android:backgroundTint="@color/accent"
-        android:src="@android:drawable/ic_input_add"
-        android:tint="@android:color/white"
-        android:contentDescription="Aggiungi" />
+        android:src="@drawable/ic_add"
+        android:contentDescription="Aggiungi"
+        app:shapeAppearanceOverlay="@style/FabSquircle"
+        app:fabSize="normal"
+        app:maxImageSize="28dp"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -41,20 +41,17 @@ public class CalendarAdapter extends RecyclerView.Adapter<CalendarAdapter.ViewHo
         h.tvDayNumber.setText(String.valueOf(day.get(Calendar.DAY_OF_MONTH)));
 
         boolean isSelected = position == selectedPosition;
-        boolean isToday = position == todayPosition;
-
-        h.vCircleBg.setVisibility(isSelected ? View.VISIBLE : View.INVISIBLE);
-        h.vTodayRing.setVisibility((!isSelected && isToday) ? View.VISIBLE : View.INVISIBLE);
 
         if (isSelected) {
+            h.vPillBg.setBackgroundResource(R.drawable.bg_calendar_pill_selected);
+            h.tvDayName.setTextColor(0xFFFFFFFF);
             h.tvDayNumber.setTextColor(0xFFFFFFFF);
-            h.tvDayName.setTextColor(0xFFEF5350);
-        } else if (isToday) {
-            h.tvDayNumber.setTextColor(0xFFEF5350);
-            h.tvDayName.setTextColor(0xFFEF5350);
+            h.vTodayDot.setVisibility(View.VISIBLE);
         } else {
-            h.tvDayNumber.setTextColor(0xFF999999);
+            h.vPillBg.setBackgroundResource(R.drawable.bg_calendar_pill_dark);
             h.tvDayName.setTextColor(0xFF666666);
+            h.tvDayNumber.setTextColor(0xFF999999);
+            h.vTodayDot.setVisibility(View.GONE);
         }
 
         h.itemView.setOnClickListener(v -> {
@@ -71,11 +68,15 @@ public class CalendarAdapter extends RecyclerView.Adapter<CalendarAdapter.ViewHo
 
     static class ViewHolder extends RecyclerView.ViewHolder {
         TextView tvDayName, tvDayNumber;
+        View vPillBg, vTodayDot;
         View vCircleBg, vTodayRing;
+
         ViewHolder(View v) {
             super(v);
             tvDayName = v.findViewById(R.id.tv_day_name);
             tvDayNumber = v.findViewById(R.id.tv_day_number);
+            vPillBg = v.findViewById(R.id.v_pill_bg);
+            vTodayDot = v.findViewById(R.id.v_today_dot);
             vCircleBg = v.findViewById(R.id.v_circle_bg);
             vTodayRing = v.findViewById(R.id.v_today_ring);
         }

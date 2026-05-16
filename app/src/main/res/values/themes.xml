@@ -9,6 +9,11 @@
         <item name="android:navigationBarColor">@color/bg_card</item>
     </style>
 
+    <style name="FabSquircle">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">20dp</item>
+    </style>
+
     <style name="RedOutlinedBox" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
         <item name="boxStrokeColor">@color/accent_light</item>
         <item name="hintTextColor">@color/accent_light</item>

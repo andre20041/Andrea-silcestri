@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="bg_dark">#0F0F0F</color>
+    <color name="bg_dark">#000000</color>
     <color name="bg_card">#1C1C1C</color>
     <color name="bg_surface">#252525</color>
     <color name="accent">#D32F2F</color>
