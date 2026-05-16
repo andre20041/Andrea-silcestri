@@ -72,9 +72,9 @@ public class HabitsFragment extends Fragment {
         sheet.setOnTypeSelectedListener(new AddTypeBottomSheet.OnTypeSelectedListener() {
             @Override
             public void onHabitSelected() {
-                startActivityForResult(
-                    new android.content.Intent(requireContext(), CategorySelectionActivity.class),
-                    AddTypeBottomSheet.REQUEST_ADD_HABIT);
+                android.content.Intent i = new android.content.Intent(requireContext(), CategorySelectionActivity.class);
+                i.putExtra(HabitCreationActivity.EXTRA_HABIT_TYPE, "Abitudine");
+                startActivityForResult(i, AddTypeBottomSheet.REQUEST_ADD_HABIT);
             }
             @Override
             public void onRecurringSelected() {
@@ -102,7 +102,8 @@ public class HabitsFragment extends Fragment {
             String emoji = data.getStringExtra(HabitCreationActivity.RESULT_HABIT_EMOJI);
             String category = data.getStringExtra(HabitCreationActivity.RESULT_CATEGORY);
             if (name != null && !name.isEmpty()) {
-                storage.addHabit(name, emoji != null ? emoji : "💪", category != null ? category : "");
+                String type = data.getStringExtra(HabitCreationActivity.RESULT_HABIT_TYPE);
+                storage.addHabit(name, emoji != null ? emoji : "💪", category != null ? category : "", type);
                 refresh();
             }
         }

@@ -40,12 +40,12 @@ public class HabitAdapter extends RecyclerView.Adapter<HabitAdapter.ViewHolder> 
         h.tvEmoji.setText(habit.getEmoji());
         h.tvName.setText(habit.getName());
 
-        // Category badge text
-        String cat = habit.getCategory();
-        h.tvCategoryBadge.setText((cat != null && !cat.isEmpty()) ? cat : "Abitudine");
+        // Badge shows habit TYPE (Abitudine / Attività ricorrente / Attività)
+        String type = habit.getHabitType();
+        h.tvCategoryBadge.setText((type != null && !type.isEmpty()) ? type : "Abitudine");
 
-        // Category color
-        int catColor = getCategoryColor(cat);
+        // Category color (from category name stored in habit)
+        int catColor = getCategoryColor(habit.getCategory());
 
         // Left icon background: colored rounded square
         GradientDrawable iconBg = new GradientDrawable();

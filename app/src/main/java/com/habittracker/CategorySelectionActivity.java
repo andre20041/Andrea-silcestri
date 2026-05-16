@@ -21,10 +21,12 @@ public class CategorySelectionActivity extends AppCompatActivity {
         rv.setLayoutManager(new GridLayoutManager(this, 2));
 
         List<Category> categories = Category.getDefaultCategories();
+        String habitType = getIntent().getStringExtra(HabitCreationActivity.EXTRA_HABIT_TYPE);
         CategoryAdapter adapter = new CategoryAdapter(categories, cat -> {
             Intent intent = new Intent(this, HabitCreationActivity.class);
             intent.putExtra(HabitCreationActivity.EXTRA_CATEGORY_NAME, cat.getName());
             intent.putExtra(HabitCreationActivity.EXTRA_CATEGORY_EMOJI, cat.getEmoji());
+            intent.putExtra(HabitCreationActivity.EXTRA_HABIT_TYPE, habitType != null ? habitType : "Abitudine");
             startActivityForResult(intent, 2002);
         });
         rv.setAdapter(adapter);

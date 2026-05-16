@@ -23,8 +23,8 @@
                 android:layout_width="36dp"
                 android:layout_height="36dp"
                 android:padding="6dp"
-                android:src="@drawable/ic_filter"
-                android:tint="#888888"
+                android:src="@drawable/ic_hamburger"
+                android:tint="#CCCCCC"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:contentDescription="Menu"
                 android:layout_marginEnd="4dp"/>

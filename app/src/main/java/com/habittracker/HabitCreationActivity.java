@@ -12,17 +12,19 @@ public class HabitCreationActivity extends AppCompatActivity {
 
     public static final String EXTRA_CATEGORY_NAME = "cat_name";
     public static final String EXTRA_CATEGORY_EMOJI = "cat_emoji";
+    public static final String EXTRA_HABIT_TYPE = "habit_type";
     public static final String RESULT_HABIT_NAME = "habit_name";
     public static final String RESULT_HABIT_EMOJI = "habit_emoji";
     public static final String RESULT_CATEGORY = "habit_category";
     public static final String RESULT_TRACKING = "habit_tracking";
+    public static final String RESULT_HABIT_TYPE = "result_habit_type";
 
     private static final int STEP_TRACKING = 0;
     private static final int STEP_DEFINE = 1;
 
     private int currentStep = STEP_TRACKING;
     private String selectedTracking = "yes_no";
-    private String categoryName, categoryEmoji;
+    private String categoryName, categoryEmoji, habitType = "Abitudine";
 
     private ViewFlipper viewFlipper;
     private TextView btnPrev, btnNext;
@@ -38,6 +40,8 @@ public class HabitCreationActivity extends AppCompatActivity {
         categoryEmoji = getIntent().getStringExtra(EXTRA_CATEGORY_EMOJI);
         if (categoryEmoji == null) categoryEmoji = "💪";
         if (categoryName == null) categoryName = "";
+        String ht = getIntent().getStringExtra(EXTRA_HABIT_TYPE);
+        habitType = (ht != null) ? ht : "Abitudine";
 
         viewFlipper = findViewById(R.id.view_flipper);
         btnPrev = findViewById(R.id.btn_prev);
@@ -83,6 +87,7 @@ public class HabitCreationActivity extends AppCompatActivity {
             result.putExtra(RESULT_HABIT_EMOJI, categoryEmoji);
             result.putExtra(RESULT_CATEGORY, categoryName);
             result.putExtra(RESULT_TRACKING, selectedTracking);
+            result.putExtra(RESULT_HABIT_TYPE, habitType);
             setResult(RESULT_OK, result);
             finish();
         }
